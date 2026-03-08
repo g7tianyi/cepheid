@@ -4,14 +4,14 @@
     "url": "https://raw.githubusercontent.com/vigorX777/ai-daily-digest/main/SKILL.md",
     "type": "github",
     "stars": 3,
-    "category": "content-aggregation",
+    "category": "information",
     "author": "vigorX777",
     "tags": ["news", "digest", "rss", "ai-scoring", "tech-news", "automation", "bilingual", "hacker-news"],
     "metadata": {
       "name": "ai-daily-digest",
       "version": "1.0.0",
       "description": "AI-curated daily tech digest from 90 top Hacker News blogs with bilingual support",
-      "category": "content-aggregation",
+      "category": "information",
       "author": "vigorX777",
       "keywords": ["hacker news", "tech news", "rss", "ai curation", "daily digest", "tech blogs", "andrej karpathy"]
     },
