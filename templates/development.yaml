@@ -1,0 +1,73 @@
+name: development
+description: Development-focused template with common dev tools auto-approved. Good balance for active coding sessions.
+autoApprove:
+  # Read operations
+  - Read(**)
+
+  # Git operations (common dev workflow)
+  - Bash(git status:*)
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(git show:*)
+  - Bash(git branch:*)
+  - Bash(git add:*)
+  - Bash(git commit:*)
+  - Bash(git checkout:*)
+  - Bash(git pull:*)
+  - Bash(git stash:*)
+  - Bash(git fetch:*)
+
+  # GitHub CLI (read operations + PR creation)
+  - Bash(gh pr create:*)
+  - Bash(gh pr list:*)
+  - Bash(gh pr view:*)
+  - Bash(gh pr checkout:*)
+  - Bash(gh pr status:*)
+  - Bash(gh issue list:*)
+  - Bash(gh issue view:*)
+  - Bash(gh repo view:*)
+
+  # Package management (dev operations)
+  - Bash(npm install:*)
+  - Bash(npm run:*)
+  - Bash(npm list:*)
+  - Bash(npm outdated:*)
+  - Bash(npx:*)
+
+  # Testing and quality
+  - Bash(npm test:*)
+  - Bash(npm run test:*)
+  - Bash(npm run lint:*)
+  - Bash(npm run typecheck:*)
+  - Bash(tsc --noEmit:*)
+
+  # Build tools
+  - Bash(npm run build:*)
+  - Bash(npm run dev:*)
+  - Bash(make:*)
+
+  # Common file operations
+  - Bash(ls:*)
+  - Bash(cat:*)
+  - Bash(head:*)
+  - Bash(tail:*)
+  - Bash(grep:*)
+  - Bash(find:*)
+  - Bash(tree:*)
+  - Bash(mkdir:*)
+
+  # Development servers
+  - Bash(node:*)
+  - Bash(python:*)
+  - Bash(python3:*)
+
+  # Database (read operations)
+  - Bash(sqlite3 *.db "SELECT:*)
+
+  # Web operations
+  - WebSearch
+  - WebFetch(domain:docs.*)
+  - WebFetch(domain:stackoverflow.com)
+  - WebFetch(domain:github.com)
+  - WebFetch(domain:npmjs.com)
+  - WebFetch(domain:developer.mozilla.org)

@@ -1,0 +1,13 @@
+name: refactor-safe
+version: 1.0.0
+description: Safe refactoring patterns and checklist
+category: code-quality
+author: Claude Code Community
+tags:
+  - refactoring
+  - code-quality
+  - best-practices
+keywords:
+  - refactor
+  - clean code
+  - technical debt

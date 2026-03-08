@@ -1,0 +1,78 @@
+name: permissive
+description: Fast iteration mode - most operations auto-approved. Ideal for experimental projects and rapid prototyping.
+autoApprove:
+  # All read operations
+  - Read(**)
+
+  # All git operations (except dangerous ones)
+  - Bash(git status:*)
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(git show:*)
+  - Bash(git branch:*)
+  - Bash(git add:*)
+  - Bash(git commit:*)
+  - Bash(git checkout:*)
+  - Bash(git pull:*)
+  - Bash(git push:*)
+  - Bash(git merge:*)
+  - Bash(git rebase:*)
+  - Bash(git stash:*)
+  - Bash(git fetch:*)
+  - Bash(git remote:*)
+  - Bash(git reset:*)
+
+  # GitHub CLI (all operations)
+  - Bash(gh pr:*)
+  - Bash(gh issue:*)
+  - Bash(gh repo:*)
+  - Bash(gh api:*)
+
+  # Package management (all operations)
+  - Bash(npm:*)
+  - Bash(yarn:*)
+  - Bash(pnpm:*)
+  - Bash(npx:*)
+
+  # Build tools
+  - Bash(make:*)
+  - Bash(tsc:*)
+  - Bash(webpack:*)
+  - Bash(vite:*)
+
+  # File operations
+  - Bash(tree:*)
+  - Bash(find:*)
+  - Bash(grep:*)
+  - Bash(ls:*)
+  - Bash(cat:*)
+  - Bash(head:*)
+  - Bash(tail:*)
+  - Bash(mkdir:*)
+  - Bash(mv:*)
+  - Bash(cp:*)
+  - Bash(rm:*)
+  - Bash(touch:*)
+  - Bash(chmod:*)
+
+  # Language-specific tools
+  - Bash(python:*)
+  - Bash(python3:*)
+  - Bash(node:*)
+  - Bash(go:*)
+  - Bash(cargo:*)
+
+  # Database tools (project-specific)
+  - Bash(sqlite3:*)
+  - Bash(psql:*)
+  - Bash(mysql:*)
+
+  # Web operations
+  - WebSearch
+  - WebFetch(*)
+
+  # Note: Still requires approval for:
+  # - git push --force
+  # - rm -rf on system directories
+  # - sudo commands
+  # - System-wide package installations

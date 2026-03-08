@@ -1,0 +1,27 @@
+name: strict
+description: Maximum security - only read operations auto-approved. Ideal for production environments.
+autoApprove:
+  # Read operations
+  - Read(**)
+
+  # Git read operations
+  - Bash(git status:*)
+  - Bash(git diff:*)
+  - Bash(git log:*)
+  - Bash(git show:*)
+  - Bash(git branch:*)
+
+  # Package manager read operations
+  - Bash(npm list:*)
+  - Bash(npm outdated:*)
+
+  # Type checking and linting (read-only)
+  - Bash(tsc --noEmit:*)
+  - Bash(npm run lint:*)
+  - Bash(npm run typecheck:*)
+
+  # Web searches (informational)
+  - WebSearch
+  - WebFetch(domain:docs.*)
+  - WebFetch(domain:en.wikipedia.org)
+  - WebFetch(domain:github.com)

@@ -1,0 +1,14 @@
+name: debug-helper
+version: 1.0.0
+description: Systematic debugging workflow and techniques
+category: development
+author: Claude Code Community
+tags:
+  - debugging
+  - troubleshooting
+  - problem-solving
+keywords:
+  - debug
+  - bug
+  - troubleshoot
+  - error
