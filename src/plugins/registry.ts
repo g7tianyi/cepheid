@@ -12,7 +12,9 @@ export interface PluginMetadata {
   features?: string[];
   requirements?: {
     claudeCode?: string;
+    node?: string;
   };
+  notes?: string[];
 }
 
 /**

@@ -1,1 +1,30 @@
-[]
+[
+  {
+    "name": "claude-mem",
+    "repo": "https://github.com/thedotmack/claude-mem",
+    "description": "Persistent memory plugin that captures session context and injects relevant knowledge into future coding sessions",
+    "stars": 4,
+    "category": "memory",
+    "author": "thedotmack",
+    "tags": ["memory", "context", "persistence", "search", "productivity"],
+    "features": [
+      "Automatic session context capture via lifecycle hooks",
+      "SQLite database with hybrid semantic + keyword search",
+      "Web viewer UI for browsing memory (localhost:37777)",
+      "Progressive disclosure for token-efficient retrieval",
+      "Privacy controls with <private> tag support",
+      "Natural language search across all sessions"
+    ],
+    "requirements": {
+      "claudeCode": ">=2.0.0",
+      "node": ">=18.0.0"
+    },
+    "notes": [
+      "AGPL-3.0 license - derivative work must be open source",
+      "Auto-installs dependencies: Bun, uv, SQLite, Chroma",
+      "Stores data locally in ~/.claude-mem/",
+      "Token costs apply for semantic search operations",
+      "Windows users may need to configure PATH"
+    ]
+  }
+]

@@ -151,10 +151,57 @@ export async function updatePlugins(plugins: string[]) {
 
 export async function showPluginInfo(pluginName: string) {
   try {
+    // Try to get from registry first
+    const { getPluginFromRegistry } = await import('../plugins/registry');
+    const registryPlugin = await getPluginFromRegistry(pluginName);
+
+    if (registryPlugin) {
+      const installed = await isPluginInstalled(pluginName);
+      const stars = chalk.yellow(renderStars(registryPlugin.stars));
+
+      console.log(chalk.bold(`\n${registryPlugin.name} ${stars}`));
+      console.log(chalk.gray('='.repeat(registryPlugin.name.length + 6)));
+      console.log();
+      console.log(registryPlugin.description);
+      console.log();
+      console.log(`${chalk.bold('Category:')} ${registryPlugin.category}`);
+      console.log(`${chalk.bold('Author:')} ${registryPlugin.author}`);
+      console.log(`${chalk.bold('Repository:')} ${registryPlugin.repo}`);
+      console.log(`${chalk.bold('Installed:')} ${installed ? chalk.green('Yes') : chalk.gray('No')}`);
+
+      if (registryPlugin.tags && registryPlugin.tags.length > 0) {
+        console.log(`${chalk.bold('Tags:')} ${registryPlugin.tags.join(', ')}`);
+      }
+
+      if (registryPlugin.features && registryPlugin.features.length > 0) {
+        console.log();
+        console.log(chalk.bold('Features:'));
+        registryPlugin.features.forEach(f => console.log(`  • ${f}`));
+      }
+
+      if (registryPlugin.requirements) {
+        console.log();
+        console.log(chalk.bold('Requirements:'));
+        Object.entries(registryPlugin.requirements).forEach(([key, value]) => {
+          console.log(`  • ${key}: ${value}`);
+        });
+      }
+
+      if (registryPlugin.notes && registryPlugin.notes.length > 0) {
+        console.log();
+        console.log(chalk.bold('Important Notes:'));
+        registryPlugin.notes.forEach(n => console.log(`  ${chalk.yellow('⚠')} ${n}`));
+      }
+
+      console.log();
+      return;
+    }
+
+    // Fallback to installed plugin info
     const plugin = await getPluginInfo(pluginName);
 
     if (!plugin) {
-      console.log(chalk.red(`Plugin "${pluginName}" is not installed.`));
+      console.log(chalk.red(`Plugin "${pluginName}" not found in registry or installed.`));
       return;
     }
 
