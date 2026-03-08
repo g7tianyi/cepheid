@@ -45,14 +45,14 @@ cepheid profile preview developers
 ```
 
 Available profiles:
-- **commons** - Essential skills everyone needs
-- **developers** - TDD, code review, testing, debugging
-- **architects** - System design, patterns, documentation
-- **work-efficiency** - Productivity and automation
-- **learning** - Skills for learning new subjects (art, languages, research)
-- **content-creators** - Writing, design, presentations
-- **entrepreneurs** - Fundraising, pitching, market research
-- **security** - Security review and vulnerability scanning
+- **commons** - Essential skills everyone needs (3 skills)
+- **developers** - TDD, code review, testing, debugging (9 skills)
+- **architects** - System design, patterns, documentation (7 skills)
+- **work-efficiency** - Productivity and automation (6 skills)
+- **learning** - Skills for learning new subjects (art, languages, research) (7 skills)
+- **content-creators** - Writing, design, presentations (9 skills)
+- **entrepreneurs** - Fundraising, pitching, market research (6 skills)
+- **security** - Security review and vulnerability scanning (3 skills)
 
 ### Option 2: Install a Skill from URL
 
@@ -124,7 +124,11 @@ cepheid skill enabled
 **Example profiles:**
 - `commons` - 3 essential skills for everyone
 - `developers` - 9 core development skills (TDD, code review, patterns)
+- `architects` - 7 architecture and design skills
+- `work-efficiency` - 6 productivity and automation skills
 - `learning` - 7 skills for education and research
+- `content-creators` - 9 skills for writing and design
+- `entrepreneurs` - 6 business and startup skills
 - `security` - 3 security-focused skills
 
 ### Plugin Management

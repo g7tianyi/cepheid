@@ -51,20 +51,40 @@ async function getRegistryUrl(): Promise<string> {
 }
 
 /**
+ * Get path to bundled skills registry
+ */
+function getSkillsRegistryPath(): string {
+  // For CommonJS (TypeScript compiles to this)
+  // __dirname is the directory of the compiled JS file in dist/
+  // We need to go up to the project root, then into registry/
+  return path.join(__dirname, '../../registry/skills.json');
+}
+
+/**
+ * Load bundled registry from local file
+ */
+async function loadBundledRegistry(): Promise<SkillSource[]> {
+  const registryPath = getSkillsRegistryPath();
+
+  try {
+    if (await fs.pathExists(registryPath)) {
+      const content = await fs.readJson(registryPath);
+      return content as SkillSource[];
+    }
+  } catch (error) {
+    console.error('Failed to load bundled skills registry:', error);
+  }
+
+  return [];
+}
+
+/**
  * Fetch registry from remote URL
  */
 async function fetchRegistry(): Promise<SkillSource[]> {
-  const registryUrl = await getRegistryUrl();
-
-  try {
-    // Use node-fetch or similar to fetch from URL
-    // For now, return empty array - will be implemented when we have actual registry
-    console.warn('Remote registry fetching not yet implemented. Using local cache.');
-    return [];
-  } catch (error) {
-    console.error('Failed to fetch registry:', error);
-    return [];
-  }
+  // For now, load from bundled registry
+  // In the future, this can fetch from remote URL and merge with bundled
+  return await loadBundledRegistry();
 }
 
 /**
