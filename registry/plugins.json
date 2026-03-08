@@ -26,5 +26,36 @@
       "Token costs apply for semantic search operations",
       "Windows users may need to configure PATH"
     ]
+  },
+  {
+    "name": "superpowers",
+    "repo": "https://github.com/obra/superpowers",
+    "description": "Opinionated workflow system enforcing software engineering best practices (TDD, design phases, code review)",
+    "stars": 3,
+    "category": "workflow",
+    "author": "obra",
+    "tags": ["workflow", "tdd", "best-practices", "collaboration", "opinionated"],
+    "features": [
+      "14 composable skills covering full SDLC",
+      "Mandatory brainstorming and design phases with hard gates",
+      "Test-driven development (RED-GREEN-REFACTOR) enforcement",
+      "Systematic debugging workflows",
+      "Git worktree management for parallel development",
+      "Code review and collaboration patterns",
+      "Subagent-driven development for autonomous execution"
+    ],
+    "requirements": {
+      "claudeCode": ">=2.0.0"
+    },
+    "notes": [
+      "⚠️ HIGHLY OPINIONATED - Enforces specific workflows with mandatory steps",
+      "⚠️ Intercepts Claude's native plan mode and forces brainstorming workflow",
+      "⚠️ Hard gates: No implementation until design is approved by user",
+      "⚠️ Enforces TDD - may not suit rapid prototyping or exploratory coding",
+      "⚠️ Learning curve - 14 skills to understand",
+      "MIT license (permissive)",
+      "Best for: Teams wanting discipline, junior developers learning best practices",
+      "NOT for: Experienced developers with established workflows, quick prototypes"
+    ]
   }
 ]
