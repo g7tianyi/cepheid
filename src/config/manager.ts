@@ -10,8 +10,15 @@ export interface ClaudeCodeConfig {
   [key: string]: any;
 }
 
+export interface PluginRecord {
+  name: string;
+  repo: string;
+  path: string;
+}
+
 export interface CepheidConfig {
   installedSkills: string[];
+  installedPlugins?: PluginRecord[];
   currentTemplate: string;
   lastBackup?: string;
 }

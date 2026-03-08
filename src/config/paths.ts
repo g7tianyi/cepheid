@@ -41,6 +41,24 @@ export function getClaudeCodeConfigDir(): string {
 }
 
 /**
+ * Get Claude Code plugins directory
+ */
+export function getClaudeCodePluginsDir(): string {
+  const homeDir = os.homedir();
+  const platform = os.platform();
+
+  switch (platform) {
+    case 'darwin':
+    case 'linux':
+      return path.join(homeDir, 'plugins');
+    case 'win32':
+      return path.join(homeDir, 'plugins');
+    default:
+      return path.join(homeDir, 'plugins');
+  }
+}
+
+/**
  * Get backups directory
  */
 export function getBackupsDir(): string {
@@ -52,6 +70,13 @@ export function getBackupsDir(): string {
  */
 export function getSkillsDir(): string {
   return path.join(getConfigDir(), 'installed-skills');
+}
+
+/**
+ * Get plugins installation directory
+ */
+export function getPluginsDir(): string {
+  return path.join(getConfigDir(), 'plugins');
 }
 
 /**

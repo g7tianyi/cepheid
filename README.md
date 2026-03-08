@@ -7,11 +7,12 @@ Cepheid lets you install community-maintained Claude Code skills from remote rep
 ## Features
 
 - 🌐 **Remote Skills Registry**: Install skills from GitHub, URLs, or a centralized registry
+- 🔌 **Plugin Support**: Install full Claude Code plugins with hooks, commands, agents, and skills
 - ⚡ **One-Command Install**: `cepheid install <url-or-name>` - done!
 - 🔐 **Permission Templates**: Pre-configured profiles (strict, balanced, permissive, development)
 - 🔄 **Backup/Restore**: Save and sync your settings across machines
-- 📦 **Lightweight**: No bundled skills - install only what you need
-- 🛠️ **Custom Skills**: Add your own skills from any URL
+- 📦 **Lightweight**: No bundled content - install only what you need
+- 🛠️ **Extensible**: Add your own skills and plugins from any URL
 
 ## Installation
 
@@ -67,6 +68,31 @@ cepheid permissions show
 ```
 
 ## Usage
+
+### Plugin Management
+
+```bash
+# Install a plugin from GitHub
+cepheid plugin install https://github.com/humanplane/homunculus
+
+# List installed plugins
+cepheid plugin list
+
+# Update plugin (git pull)
+cepheid plugin update homunculus
+
+# Uninstall plugin
+cepheid plugin uninstall homunculus
+
+# Show plugin info
+cepheid plugin info homunculus
+
+# Link plugin to Claude Code (creates symlink in ~/plugins/)
+cepheid plugin link homunculus
+
+# Unlink plugin
+cepheid plugin unlink homunculus
+```
 
 ### Skills Management
 
@@ -163,6 +189,30 @@ cepheid backup restore my-setup
 - Only destructive system commands require approval
 - Fast iteration, less friction
 - Ideal for: Experimental projects, rapid prototyping
+
+## Skills vs Plugins
+
+Cepheid supports two types of Claude Code extensions:
+
+### Skills
+**Simple Markdown files** with prompts for Claude Code.
+- Single `.md` file
+- Prompt-based behaviors
+- Easy to create and share
+- Lightweight
+
+**Use skills for**: Code review templates, testing workflows, documentation generators
+
+### Plugins
+**Full packages** with multiple components.
+- Directory structure with `.claude-plugin/` manifest
+- Can include: hooks, commands, agents, skills, scripts
+- More powerful and complex
+- GitHub repository
+
+**Use plugins for**: Complex behaviors, observability, state management, integrated workflows
+
+**Example plugin**: [Homunculus](https://github.com/humanplane/homunculus) - Learning plugin that evolves based on your coding patterns
 
 ## Creating Community Skills
 

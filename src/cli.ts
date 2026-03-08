@@ -5,6 +5,7 @@ import chalk from 'chalk';
 import * as skillCommands from './commands/skills';
 import * as permissionCommands from './commands/permissions';
 import * as backupCommands from './commands/backup';
+import * as pluginCommands from './commands/plugins';
 
 const program = new Command();
 
@@ -121,6 +122,44 @@ backup
   .command('list')
   .description('List all available backups')
   .action(backupCommands.listBackups);
+
+// Plugin commands
+const plugin = program.command('plugin').alias('plugins').description('Manage Claude Code plugins');
+
+plugin
+  .command('install <repos...>')
+  .description('Install plugins from GitHub repositories')
+  .action(pluginCommands.installPlugins);
+
+plugin
+  .command('uninstall <plugins...>')
+  .description('Uninstall plugins')
+  .action(pluginCommands.uninstallPlugins);
+
+plugin
+  .command('list')
+  .description('List installed plugins')
+  .action(pluginCommands.listPlugins);
+
+plugin
+  .command('update [plugins...]')
+  .description('Update installed plugins (or all if no plugin specified)')
+  .action(pluginCommands.updatePlugins);
+
+plugin
+  .command('info <name>')
+  .description('Show plugin information')
+  .action(pluginCommands.showPluginInfo);
+
+plugin
+  .command('link <name>')
+  .description('Link plugin to Claude Code plugins directory')
+  .action(pluginCommands.linkPluginToClaudeCode);
+
+plugin
+  .command('unlink <name>')
+  .description('Unlink plugin from Claude Code plugins directory')
+  .action(pluginCommands.unlinkPluginFromClaudeCode);
 
 // Error handling
 program.exitOverride();
