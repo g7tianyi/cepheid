@@ -1,0 +1,51 @@
+[
+  {
+    "name": "ai-daily-digest",
+    "url": "https://raw.githubusercontent.com/vigorX777/ai-daily-digest/main/SKILL.md",
+    "type": "github",
+    "stars": 3,
+    "category": "content-aggregation",
+    "author": "vigorX777",
+    "tags": ["news", "digest", "rss", "ai-scoring", "tech-news", "automation", "bilingual", "hacker-news"],
+    "metadata": {
+      "name": "ai-daily-digest",
+      "version": "1.0.0",
+      "description": "AI-curated daily tech digest from 90 top Hacker News blogs with bilingual support",
+      "category": "content-aggregation",
+      "author": "vigorX777",
+      "keywords": ["hacker news", "tech news", "rss", "ai curation", "daily digest", "tech blogs", "andrej karpathy"]
+    },
+    "features": [
+      "90 curated tech blog sources from Andrej Karpathy's HN recommendations",
+      "AI-powered multi-dimensional article scoring (AI/ML, Security, Engineering, Tools, Opinion, Other)",
+      "Bilingual output support (Chinese and English via --lang flag)",
+      "Smart filtering with configurable article count and time range",
+      "Visual statistics with Mermaid charts and ASCII visualizations",
+      "Zero dependency single TypeScript file using Bun runtime",
+      "Configuration persistence in ~/.hn-daily-digest/config.json",
+      "Dual AI provider support (Gemini primary, OpenAI fallback)",
+      "Markdown digest format with Top 3 previews and trend analysis",
+      "Concurrent RSS fetching from all 90 sources"
+    ],
+    "requirements": {
+      "claudeCode": ">=2.0.0",
+      "runtime": "Bun",
+      "apiKey": "Gemini API or OpenAI-compatible API"
+    },
+    "notes": [
+      "⚠️ VERY YOUNG REPOSITORY - Created Feb 14, 2026 (3 weeks old)",
+      "⚠️ NO LICENSE FILE - Legal status unclear, use at own risk",
+      "⚠️ Minimal maintenance - Only 7 commits total",
+      "⭐ 1,400 GitHub stars - Good community interest despite young age",
+      "💰 API COSTS - Heavy usage: ~90 RSS feeds + AI scoring per run",
+      "🔧 Requires Bun runtime installation (not standard Node.js)",
+      "🌐 Bilingual capable - Use --lang en for English, --lang zh for Chinese",
+      "📚 Quality sources - Uses Andrej Karpathy's curated HN blog list",
+      "📝 Chinese documentation - README and SKILL.md entirely in Chinese",
+      "💾 Smart defaults - 48 hours lookback, 15 articles, saves preferences",
+      "⚠️ Use with caution - Very new, no license, unclear long-term support",
+      "Best for: Daily tech news consumers comfortable with Bun and API costs",
+      "NOT for: Production use, license-sensitive environments, budget users"
+    ]
+  }
+]
