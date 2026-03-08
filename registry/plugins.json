@@ -1,5 +1,46 @@
 [
   {
+    "name": "anthropic-agent-skills",
+    "repo": "https://github.com/anthropics/skills",
+    "description": "Official Anthropic skills repository - production document processing skills and curated examples demonstrating best practices",
+    "stars": 5,
+    "category": "official",
+    "author": "Anthropic",
+    "tags": ["official", "documents", "pdf", "xlsx", "docx", "pptx", "mcp", "examples", "reference"],
+    "features": [
+      "Production document skills: PDF, Excel, Word, PowerPoint processing",
+      "17 curated example skills showing best practices",
+      "Skill creator skill (meta-skill for generating new skills)",
+      "MCP server builder skill for creating Claude MCP servers",
+      "Claude API documentation skill with SDK examples",
+      "Visual design skills: algorithmic art, canvas design, theme factory",
+      "Enterprise skills: brand guidelines, internal comms",
+      "Development skills: web artifacts builder, webapp testing",
+      "Creative skills: Slack GIF creator",
+      "Official Agent Skills specification (agentskills.io)",
+      "Template for creating custom skills",
+      "Source-available document skills (reference implementations)"
+    ],
+    "requirements": {
+      "claudeCode": ">=2.0.0"
+    },
+    "notes": [
+      "🏢 OFFICIAL REPOSITORY from Anthropic",
+      "⭐ 86,766 GitHub stars - THE MOST STARRED in ecosystem",
+      "📦 Three plugin bundles: document-skills, example-skills, claude-api",
+      "🔓 Mixed licensing: Apache 2.0 (examples), Proprietary (document skills)",
+      "💼 Production-ready: These ARE the skills powering Claude.ai",
+      "📚 Reference implementations showing Anthropic's best practices",
+      "🎓 Educational: Learn how to build high-quality skills",
+      "⚠️ Document skills (pdf/xlsx/docx/pptx) are source-available, not open source",
+      "⚠️ 5.5 months old (Sept 2025) - approved due to official status",
+      "MIT license does NOT apply to document skills - check individual LICENSE.txt",
+      "Best for: Anyone needing document processing or wanting to learn skill development",
+      "Install: /plugin marketplace add anthropics/skills",
+      "Usage: /plugin install document-skills@anthropic-agent-skills"
+    ]
+  },
+  {
     "name": "everything-claude-code",
     "repo": "https://github.com/affaan-m/everything-claude-code",
     "description": "The comprehensive Claude Code performance system - agents, skills, hooks, commands, and rules from an Anthropic hackathon winner",
