@@ -37,6 +37,16 @@ skills
   .description('List all skill categories')
   .action(skillCommands.listCategories);
 
+skills
+  .command('add <name> <url>')
+  .description('Add a custom skill from URL')
+  .action(skillCommands.addCustomSkill);
+
+skills
+  .command('update-registry')
+  .description('Update the skill registry cache')
+  .action(skillCommands.updateRegistryCache);
+
 // Install command (top-level for convenience)
 program
   .command('install <skills...>')

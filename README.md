@@ -1,16 +1,17 @@
 # Cepheid
 
-**A CLI tool to manage Claude Code settings, permissions, and skills**
+**A CLI package manager for Claude Code skills and settings**
 
-Cepheid is your configuration manager for Claude Code - think of it as a package manager for Claude Code skills and permission templates. Install curated skills with one command, switch between permission profiles, and manage your Claude Code setup across machines.
+Cepheid lets you install community-maintained Claude Code skills from remote repositories, manage permission templates, and sync your configuration across machines. Think of it as npm for Claude Code.
 
 ## Features
 
-- 🎯 **Skills Registry**: Curated library of reusable Claude Code skills
-- ⚡ **One-Command Install**: `cepheid install code-review` - done!
-- 🔐 **Permission Templates**: Pre-configured profiles (strict, balanced, permissive)
+- 🌐 **Remote Skills Registry**: Install skills from GitHub, URLs, or a centralized registry
+- ⚡ **One-Command Install**: `cepheid install <url-or-name>` - done!
+- 🔐 **Permission Templates**: Pre-configured profiles (strict, balanced, permissive, development)
 - 🔄 **Backup/Restore**: Save and sync your settings across machines
-- 📦 **Project-Specific Configs**: Different permissions for different projects
+- 📦 **Lightweight**: No bundled skills - install only what you need
+- 🛠️ **Custom Skills**: Add your own skills from any URL
 
 ## Installation
 
@@ -26,73 +27,116 @@ npx cepheid --help
 
 ## Quick Start
 
-### Install a Skill
+### Install a Skill from URL
 
 ```bash
-# Install a single skill
+# Install from GitHub
+cepheid install https://github.com/user/repo/blob/main/skill.md
+
+# Install from raw URL
+cepheid install https://raw.githubusercontent.com/user/repo/main/skill.md
+
+# Verify it's installed
+cepheid installed
+```
+
+### Install from Registry (when available)
+
+```bash
+# Install by name from registry
 cepheid install code-review
 
-# Install multiple skills
-cepheid install testing documentation deployment
-
-# List available skills
+# List available skills in registry
 cepheid skills list
 
 # Search for skills
 cepheid skills search "test"
 ```
 
-### Manage Permissions
+### Apply Permission Templates
 
 ```bash
-# Apply a permission template
+# See available templates
+cepheid permissions list
+
+# Apply the balanced template (recommended)
 cepheid permissions apply balanced
 
+# View current permissions
+cepheid permissions show
+```
+
+## Usage
+
+### Skills Management
+
+```bash
+# Install from URL (GitHub or direct)
+cepheid install https://github.com/user/repo/blob/main/my-skill.md
+
+# Install from registry (if available)
+cepheid install skill-name
+
+# Add custom skill with name
+cepheid skills add my-skill https://example.com/skill.md
+
+# List installed skills
+cepheid installed
+
+# Uninstall skill
+cepheid uninstall skill-name
+
+# Update installed skills
+cepheid update              # Update all
+cepheid update skill-name   # Update specific skill
+
+# Browse available skills
+cepheid skills list
+cepheid skills list --category code-quality
+cepheid skills search "debug"
+cepheid skills info skill-name
+
+# Update registry cache
+cepheid skills update-registry
+```
+
+### Permission Management
+
+```bash
 # List available templates
 cepheid permissions list
 
-# Create custom template from current settings
-cepheid permissions export my-template
-
 # Show current permissions
 cepheid permissions show
+
+# Show specific template
+cepheid permissions show balanced
+
+# Apply template
+cepheid permissions apply balanced
+
+# Add custom permission rule
+cepheid permissions add "Bash(npm test:*)"
+
+# Remove permission rule
+cepheid permissions remove "Bash(npm test:*)"
+
+# Export current permissions as template
+cepheid permissions export my-template
 ```
 
 ### Backup & Restore
 
 ```bash
-# Backup current settings
+# Save current settings
 cepheid backup save my-setup
-
-# Restore from backup
-cepheid backup restore my-setup
 
 # List backups
 cepheid backup list
+
+# Restore from backup
+cepheid backup restore my-setup
 ```
-
-## Available Skills
-
-### Code Quality
-- **code-review**: Systematic PR review workflow
-- **testing**: Generate and run comprehensive tests
-- **linting**: Code style and quality checks
-- **refactor-safe**: Safe refactoring patterns
-
-### Documentation
-- **doc-generator**: Auto-generate documentation
-- **api-docs**: API documentation builder
-- **changelog**: Automated changelog generation
-
-### Deployment
-- **deploy-check**: Pre-deployment validation
-- **rollback**: Safe rollback procedures
-- **version-bump**: Semantic versioning automation
-
-### Development
-- **debug-helper**: Debugging workflow assistant
-- **performance**: Performance profiling and optimization
-- **security-scan**: Security vulnerability scanning
 
 ## Permission Templates
 
@@ -108,86 +152,192 @@ cepheid backup list
 - Risky operations require approval (force push, system changes)
 - Ideal for: Most development workflows
 
+### Development
+- Development tools auto-approved (npm, git, build tools)
+- Common dev operations streamlined
+- Good balance for active coding sessions
+- Ideal for: Daily development work
+
 ### Permissive
 - Most operations auto-approved
 - Only destructive system commands require approval
 - Fast iteration, less friction
 - Ideal for: Experimental projects, rapid prototyping
 
+## Creating Community Skills
+
+Skills are simple Markdown files with prompts for Claude Code. Anyone can create and share them!
+
+### Skill Format
+
+Create a Markdown file with your skill prompt:
+
+```markdown
+# My Awesome Skill
+
+You are helping with [specific task]. Follow these steps:
+
+## Step 1: ...
+Details here...
+
+## Step 2: ...
+More details...
+
+## Best Practices
+- Tip 1
+- Tip 2
+```
+
+### Sharing Skills
+
+1. **Host on GitHub**: Create a repo with your skill files
+2. **Share the raw URL**: Users can install with:
+   ```bash
+   cepheid install https://github.com/you/repo/blob/main/skill.md
+   ```
+
+3. **Submit to Registry** (optional): Create a PR to add your skill to the community registry
+
+### Example Skills Repository Structure
+
+```
+my-claude-skills/
+├── README.md
+├── code-review.md          # Code review workflow
+├── testing.md              # Testing guidelines
+├── debugging.md            # Debugging workflow
+└── documentation.md        # Doc generation
+```
+
+Users install with:
+```bash
+cepheid install https://github.com/you/my-claude-skills/blob/main/code-review.md
+```
+
+## Community Registry
+
+Cepheid supports a centralized registry for discovering community skills. The default registry is:
+```
+https://raw.githubusercontent.com/claude-code-community/cepheid-skills/main/registry.json
+```
+
+### Registry Format
+
+```json
+[
+  {
+    "name": "code-review",
+    "url": "https://raw.githubusercontent.com/user/repo/main/code-review.md",
+    "type": "github",
+    "metadata": {
+      "name": "code-review",
+      "version": "1.0.0",
+      "description": "Systematic PR and code review workflow",
+      "category": "code-quality",
+      "author": "Community",
+      "tags": ["review", "pr", "quality"],
+      "keywords": ["pull request", "code review"]
+    }
+  }
+]
+```
+
 ## Configuration
 
-Cepheid stores settings in:
+Cepheid stores configuration in:
 - **Linux/macOS**: `~/.config/cepheid/`
 - **Windows**: `%APPDATA%\cepheid\`
 
-Claude Code settings are typically in:
-- **Linux/macOS**: `~/.config/claude-code/` or `~/.claude-code/`
+Files:
+- `config.json` - Installed skills list
+- `custom-skills.json` - Custom skill sources
+- `registry-cache.json` - Cached registry
+- `backups/` - Configuration backups
+
+Claude Code settings are in:
+- **Linux/macOS**: `~/.config/claude-code/`
 - **Windows**: `%APPDATA%\claude-code\`
 
-## Project Structure
+## Examples
 
+### Daily Development Setup
+
+```bash
+# Install common skills
+cepheid install https://github.com/claude-skills/code-review/blob/main/skill.md
+cepheid install https://github.com/claude-skills/testing/blob/main/skill.md
+cepheid install https://github.com/claude-skills/debugging/blob/main/skill.md
+
+# Apply balanced permissions
+cepheid permissions apply balanced
+
+# Backup your setup
+cepheid backup save dev-setup
 ```
-cepheid/
-├── src/
-│   ├── cli.ts              # Main CLI entry point
-│   ├── commands/           # CLI command handlers
-│   │   ├── install.ts
-│   │   ├── permissions.ts
-│   │   └── backup.ts
-│   ├── config/
-│   │   ├── manager.ts      # Config file I/O
-│   │   └── paths.ts        # Platform-specific paths
-│   ├── skills/
-│   │   ├── registry.ts     # Skill catalog
-│   │   └── installer.ts    # Installation logic
-│   └── permissions/
-│       ├── templates.ts    # Permission profiles
-│       └── applier.ts      # Apply permissions
-├── skills/                 # Skill library
-│   ├── code-review/
-│   ├── testing/
-│   └── ...
-├── templates/              # Permission templates
-│   ├── strict.yaml
-│   ├── balanced.yaml
-│   └── permissive.yaml
-└── README.md
+
+### Experimental Project
+
+```bash
+# Use permissive mode for fast iteration
+cepheid permissions apply permissive
+
+# Install only what you need
+cepheid install https://raw.githubusercontent.com/user/repo/main/prototype-helper.md
+```
+
+### Production Work
+
+```bash
+# Maximum safety
+cepheid permissions apply strict
+
+# Install only deployment and review skills
+cepheid install https://github.com/skills/deploy-check/blob/main/skill.md
+cepheid install https://github.com/skills/security-scan/blob/main/skill.md
 ```
 
 ## Development
 
 ```bash
+# Clone repository
+git clone https://github.com/g7tianyi/cepheid.git
+cd cepheid
+
 # Install dependencies
 npm install
 
 # Build
 npm run build
 
-# Development mode (watch)
-npm run dev
+# Run locally
+node dist/cli.js --help
 
-# Type check
-npm run typecheck
-
-# Clean build artifacts
-npm run clean
+# Link for global testing
+npm link
+cepheid --help
 ```
 
 ## Contributing
 
-We welcome contributions! To add a new skill:
+We welcome contributions! To share skills:
 
-1. Create a skill directory in `skills/`
-2. Add a `skill.md` file with the skill prompt
-3. Add metadata in `skill.yaml`
-4. Submit a PR
+1. Create skill Markdown files
+2. Host on GitHub or any public URL
+3. Share the URL with the community
+4. (Optional) Submit to the community registry
 
 See `CONTRIBUTING.md` for detailed guidelines.
+
+## Why "Cepheid"?
+
+Cepheid variables are standard candles in astronomy - reliable reference points for measuring distances. Similarly, Cepheid provides standard reference configurations for Claude Code, making it easier to calibrate your setup across projects and machines.
 
 ## License
 
 MIT
 
-## Why "Cepheid"?
+## Links
 
-Cepheid variables are standard candles in astronomy - reliable reference points for measuring distances. Similarly, Cepheid provides standard reference configurations for Claude Code, making it easier to calibrate your setup across projects and machines.
+- **Repository**: https://github.com/g7tianyi/cepheid
+- **Issues**: https://github.com/g7tianyi/cepheid/issues
+- **npm**: https://www.npmjs.com/package/cepheid

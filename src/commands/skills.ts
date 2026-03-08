@@ -2,9 +2,10 @@ import chalk from 'chalk';
 import {
   listAvailableSkills,
   searchSkills as searchSkillsRegistry,
-  getSkill,
+  getSkillSource,
   getCategories as getCategoriesRegistry,
   getSkillsByCategory,
+  updateRegistry,
 } from '../skills/registry';
 import {
   installSkill,
@@ -12,6 +13,7 @@ import {
   listInstalledSkills as listInstalled,
   updateSkill,
   isSkillInstalled,
+  addSkill,
 } from '../skills/installer';
 
 export async function listSkills(options: { category?: string }) {
@@ -23,7 +25,8 @@ export async function listSkills(options: { category?: string }) {
     }
 
     if (skills.length === 0) {
-      console.log(chalk.yellow('No skills found.'));
+      console.log(chalk.yellow('No skills found in registry.'));
+      console.log(chalk.gray('Tip: Install skills from URLs with: cepheid install <url>'));
       return;
     }
 
@@ -31,18 +34,20 @@ export async function listSkills(options: { category?: string }) {
 
     const byCategory: Record<string, typeof skills> = {};
     skills.forEach(skill => {
-      if (!byCategory[skill.metadata.category]) {
-        byCategory[skill.metadata.category] = [];
+      const category = skill.metadata?.category || 'uncategorized';
+      if (!byCategory[category]) {
+        byCategory[category] = [];
       }
-      byCategory[skill.metadata.category].push(skill);
+      byCategory[category].push(skill);
     });
 
     for (const [category, categorySkills] of Object.entries(byCategory)) {
       console.log(chalk.cyan.bold(`\n${category}:`));
       for (const skill of categorySkills) {
-        const installed = await isSkillInstalled(skill.metadata.name);
+        const installed = await isSkillInstalled(skill.name);
         const badge = installed ? chalk.green('✓') : chalk.gray('○');
-        console.log(`  ${badge} ${chalk.bold(skill.metadata.name)} - ${skill.metadata.description}`);
+        const description = skill.metadata?.description || 'No description';
+        console.log(`  ${badge} ${chalk.bold(skill.name)} - ${description}`);
       }
     }
 
@@ -65,10 +70,12 @@ export async function searchSkills(query: string) {
     console.log(chalk.bold(`\nSkills matching "${query}":\n`));
 
     for (const skill of skills) {
-      const installed = await isSkillInstalled(skill.metadata.name);
+      const installed = await isSkillInstalled(skill.name);
       const badge = installed ? chalk.green('✓') : chalk.gray('○');
+      const category = skill.metadata?.category || 'uncategorized';
+      const description = skill.metadata?.description || 'No description';
       console.log(
-        `  ${badge} ${chalk.bold(skill.metadata.name)} (${skill.metadata.category}) - ${skill.metadata.description}`
+        `  ${badge} ${chalk.bold(skill.name)} (${category}) - ${description}`
       );
     }
 
@@ -81,27 +88,34 @@ export async function searchSkills(query: string) {
 
 export async function showSkillInfo(name: string) {
   try {
-    const skill = await getSkill(name);
+    const skill = await getSkillSource(name);
 
     if (!skill) {
-      console.log(chalk.red(`Skill "${name}" not found.`));
+      console.log(chalk.red(`Skill "${name}" not found in registry.`));
+      console.log(chalk.gray('Tip: Install from URL with: cepheid install <url>'));
       return;
     }
 
     const installed = await isSkillInstalled(name);
 
-    console.log(chalk.bold(`\n${skill.metadata.name}`));
-    console.log(chalk.gray('='.repeat(skill.metadata.name.length)));
+    console.log(chalk.bold(`\n${skill.name}`));
+    console.log(chalk.gray('='.repeat(skill.name.length)));
     console.log();
-    console.log(`${chalk.bold('Description:')} ${skill.metadata.description}`);
-    console.log(`${chalk.bold('Category:')} ${skill.metadata.category}`);
-    console.log(`${chalk.bold('Version:')} ${skill.metadata.version}`);
-    if (skill.metadata.author) {
-      console.log(`${chalk.bold('Author:')} ${skill.metadata.author}`);
+
+    if (skill.metadata) {
+      const { description, category, version, author, tags } = skill.metadata;
+      console.log(`${chalk.bold('Description:')} ${description}`);
+      console.log(`${chalk.bold('Category:')} ${category}`);
+      console.log(`${chalk.bold('Version:')} ${version}`);
+      if (author) {
+        console.log(`${chalk.bold('Author:')} ${author}`);
+      }
+      if (tags && tags.length > 0) {
+        console.log(`${chalk.bold('Tags:')} ${tags.join(', ')}`);
+      }
     }
-    if (skill.metadata.tags && skill.metadata.tags.length > 0) {
-      console.log(`${chalk.bold('Tags:')} ${skill.metadata.tags.join(', ')}`);
-    }
+
+    console.log(`${chalk.bold('URL:')} ${skill.url}`);
     console.log(`${chalk.bold('Installed:')} ${installed ? chalk.green('Yes') : chalk.gray('No')}`);
     console.log();
   } catch (error: any) {
@@ -174,6 +188,7 @@ export async function listInstalledSkills() {
 
     if (skills.length === 0) {
       console.log(chalk.yellow('No skills installed.'));
+      console.log(chalk.gray('Install skills with: cepheid install <name-or-url>'));
       return;
     }
 
@@ -214,6 +229,35 @@ export async function updateSkills(skills: string[]) {
     console.log(chalk.bold('\nDone!\n'));
   } catch (error: any) {
     console.error(chalk.red('Error updating skills:'), error.message);
+    process.exit(1);
+  }
+}
+
+export async function addCustomSkill(name: string, url: string) {
+  try {
+    console.log(chalk.bold(`\nAdding custom skill "${name}" from ${url}...\n`));
+
+    await addSkill(name, url);
+
+    console.log(chalk.green(`✓ Added custom skill: ${name}`));
+    console.log(chalk.gray(`Installed to: ~/.config/cepheid/installed-skills/${name}.md`));
+    console.log();
+  } catch (error: any) {
+    console.error(chalk.red('Error adding custom skill:'), error.message);
+    process.exit(1);
+  }
+}
+
+export async function updateRegistryCache() {
+  try {
+    console.log(chalk.bold('\nUpdating skill registry...\n'));
+
+    await updateRegistry();
+
+    console.log(chalk.green('✓ Registry updated'));
+    console.log();
+  } catch (error: any) {
+    console.error(chalk.red('Error updating registry:'), error.message);
     process.exit(1);
   }
 }
