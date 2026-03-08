@@ -16,9 +16,16 @@ export interface PluginRecord {
   path: string;
 }
 
+export interface EnabledSkill {
+  name: string;
+  plugin: string;
+  path: string;
+}
+
 export interface CepheidConfig {
   installedSkills: string[];
   installedPlugins?: PluginRecord[];
+  enabledSkills?: EnabledSkill[];
   currentTemplate: string;
   lastBackup?: string;
 }

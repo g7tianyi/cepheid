@@ -48,6 +48,34 @@ skills
   .description('Update the skill registry cache')
   .action(skillCommands.updateRegistryCache);
 
+// Skill management commands (for plugin skills)
+const skill = program.command('skill').description('Manage skills from installed plugins');
+
+skill
+  .command('browse <plugin>')
+  .description('Browse skills available in a plugin')
+  .action(skillCommands.browsePluginSkills);
+
+skill
+  .command('enable <plugin-skill>')
+  .description('Enable a skill from a plugin (format: plugin-name/skill-name)')
+  .action(skillCommands.enablePluginSkill);
+
+skill
+  .command('disable <skill-name>')
+  .description('Disable a skill')
+  .action(skillCommands.disablePluginSkill);
+
+skill
+  .command('enabled')
+  .description('List all enabled skills')
+  .action(skillCommands.showEnabledSkills);
+
+skill
+  .command('disable-all <plugin>')
+  .description('Disable all skills from a plugin')
+  .action(skillCommands.disableAllPluginSkills);
+
 // Install command (top-level for convenience)
 program
   .command('install <skills...>')

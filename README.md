@@ -8,6 +8,7 @@ Cepheid lets you install community-maintained Claude Code skills from remote rep
 
 - 🌐 **Remote Skills Registry**: Install skills from GitHub, URLs, or a centralized registry
 - 🔌 **Plugin Support**: Install full Claude Code plugins with hooks, commands, agents, and skills
+- 🎯 **Selective Skills**: Enable only specific skills from plugins - perfect for minimalists
 - ⚡ **One-Command Install**: `cepheid install <url-or-name>` - done!
 - 🔐 **Permission Templates**: Pre-configured profiles (strict, balanced, permissive, development)
 - 🔄 **Backup/Restore**: Save and sync your settings across machines
@@ -125,6 +126,38 @@ cepheid skills info skill-name
 # Update registry cache
 cepheid skills update-registry
 ```
+
+### Selective Skill Installation from Plugins
+
+When you install a plugin like `everything-claude-code`, it may contain dozens of skills. Cepheid lets you enable only the skills you need:
+
+```bash
+# First, install the plugin
+cepheid plugin install everything-claude-code
+
+# Browse available skills in the plugin
+cepheid skill browse everything-claude-code
+
+# Enable specific skills (creates symlinks to ~/.claude/skills/)
+cepheid skill enable everything-claude-code/tdd-workflow
+cepheid skill enable everything-claude-code/security-review
+cepheid skill enable everything-claude-code/code-reviewer
+
+# List all enabled skills
+cepheid skill enabled
+
+# Disable a skill when you no longer need it
+cepheid skill disable tdd-workflow
+
+# Disable all skills from a plugin
+cepheid skill disable-all everything-claude-code
+```
+
+**Benefits:**
+- **Minimalist approach**: Only enable what you use
+- **Better performance**: Fewer skills = faster Claude Code startup
+- **Easy management**: Track which plugin each skill comes from
+- **Automatic updates**: Enabled skills are symlinked, so plugin updates automatically update skills
 
 ### Permission Management
 
