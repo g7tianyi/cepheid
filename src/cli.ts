@@ -13,7 +13,7 @@ const program = new Command();
 program
   .name('cepheid')
   .description('CLI tool to manage Claude Code settings, permissions, and skills')
-  .version('0.1.0');
+  .version('0.5.0');
 
 // Skills commands
 const skills = program.command('skills').description('Manage Claude Code skills');

@@ -1,6 +1,6 @@
 {
   "name": "cepheid",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "CLI tool to manage Claude Code settings, permissions, and skills",
   "main": "dist/index.js",
   "bin": {
@@ -18,9 +18,13 @@
     "dist",
     "templates",
     "registry",
+    "skills",
     "README.md",
     "LICENSE",
-    "QUICKSTART.md"
+    "QUICKSTART.md",
+    "CONTRIBUTING.md",
+    "CLAUDE.md",
+    "BEST_PRACTICES.md"
   ],
   "keywords": [
     "claude-code",
