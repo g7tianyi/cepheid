@@ -29,7 +29,32 @@ npx cepheid --help
 
 ## Quick Start
 
-### Install a Skill from URL
+### Option 1: Install a Profile (Recommended for Beginners)
+
+Profiles are curated collections of skills grouped by persona/use-case. The easiest way to get started:
+
+```bash
+# See all available profiles
+cepheid profile list
+
+# Install a profile (automatically installs plugins and enables skills)
+cepheid profile install developers
+
+# Preview what would be installed
+cepheid profile preview developers
+```
+
+Available profiles:
+- **commons** - Essential skills everyone needs
+- **developers** - TDD, code review, testing, debugging
+- **architects** - System design, patterns, documentation
+- **work-efficiency** - Productivity and automation
+- **learning** - Skills for learning new subjects (art, languages, research)
+- **content-creators** - Writing, design, presentations
+- **entrepreneurs** - Fundraising, pitching, market research
+- **security** - Security review and vulnerability scanning
+
+### Option 2: Install a Skill from URL
 
 ```bash
 # Install from GitHub
@@ -69,6 +94,38 @@ cepheid permissions show
 ```
 
 ## Usage
+
+### Profile Management (Easiest Way!)
+
+Profiles are curated collections of skills for specific personas. Install everything you need with one command:
+
+```bash
+# List all available profiles with descriptions
+cepheid profile list
+
+# Show what's included in a profile
+cepheid profile show developers
+
+# Preview what would be installed (dry run)
+cepheid profile preview developers
+
+# Install a profile (installs required plugins and enables skills)
+cepheid profile install developers
+
+# Check what skills are now enabled
+cepheid skill enabled
+```
+
+**What happens when you install a profile:**
+1. Cepheid installs all required plugins (e.g., everything-claude-code, anthropic-agent-skills)
+2. Enables only the specific skills defined in that profile
+3. Tracks everything in config for easy management
+
+**Example profiles:**
+- `commons` - 3 essential skills for everyone
+- `developers` - 9 core development skills (TDD, code review, patterns)
+- `learning` - 7 skills for education and research
+- `security` - 3 security-focused skills
 
 ### Plugin Management
 

@@ -6,6 +6,7 @@ import * as skillCommands from './commands/skills';
 import * as permissionCommands from './commands/permissions';
 import * as backupCommands from './commands/backup';
 import * as pluginCommands from './commands/plugins';
+import * as profileCommands from './commands/profiles';
 
 const program = new Command();
 
@@ -190,6 +191,29 @@ plugin
   .command('unlink <name>')
   .description('Unlink plugin from Claude Code plugins directory')
   .action(pluginCommands.unlinkPluginFromClaudeCode);
+
+// Profile commands
+const profile = program.command('profile').alias('profiles').description('Manage skill profiles');
+
+profile
+  .command('list')
+  .description('List all available profiles')
+  .action(profileCommands.listProfiles);
+
+profile
+  .command('show <name>')
+  .description('Show details of a specific profile')
+  .action(profileCommands.showProfile);
+
+profile
+  .command('install <name>')
+  .description('Install a profile (installs plugins and enables skills)')
+  .action(profileCommands.installProfile);
+
+profile
+  .command('preview <name>')
+  .description('Preview what would be installed for a profile')
+  .action(profileCommands.previewProfile);
 
 // Error handling
 program.exitOverride();

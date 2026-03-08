@@ -1,0 +1,164 @@
+[
+  {
+    "name": "commons",
+    "description": "Essential skills everyone needs - basic productivity and quality practices",
+    "category": "general",
+    "skills": [
+      {
+        "plugin": "everything-claude-code",
+        "skills": ["coding-standards", "strategic-compact"]
+      },
+      {
+        "plugin": "anthropic-agent-skills",
+        "skills": ["skill-creator"]
+      }
+    ]
+  },
+  {
+    "name": "developers",
+    "description": "Core skills for software developers - TDD, code review, testing, and debugging",
+    "category": "development",
+    "skills": [
+      {
+        "plugin": "everything-claude-code",
+        "skills": [
+          "tdd-workflow",
+          "code-reviewer",
+          "security-review",
+          "backend-patterns",
+          "frontend-patterns",
+          "verification-loop",
+          "eval-harness"
+        ]
+      },
+      {
+        "plugin": "anthropic-agent-skills",
+        "skills": ["webapp-testing", "mcp-builder"]
+      }
+    ]
+  },
+  {
+    "name": "architects",
+    "description": "System design and architecture skills - planning, design patterns, and documentation",
+    "category": "architecture",
+    "skills": [
+      {
+        "plugin": "everything-claude-code",
+        "skills": [
+          "backend-patterns",
+          "frontend-patterns",
+          "api-design",
+          "deployment-patterns",
+          "docker-patterns",
+          "database-migrations"
+        ]
+      },
+      {
+        "plugin": "anthropic-agent-skills",
+        "skills": ["mcp-builder"]
+      }
+    ]
+  },
+  {
+    "name": "work-efficiency",
+    "description": "Productivity and automation skills - workflows, tools, and time management",
+    "category": "productivity",
+    "skills": [
+      {
+        "plugin": "everything-claude-code",
+        "skills": [
+          "continuous-learning-v2",
+          "strategic-compact",
+          "iterative-retrieval",
+          "skill-stocktake"
+        ]
+      },
+      {
+        "plugin": "anthropic-agent-skills",
+        "skills": ["skill-creator", "doc-coauthoring"]
+      }
+    ]
+  },
+  {
+    "name": "learning",
+    "description": "Skills for learning new subjects - art, languages, research, and knowledge building",
+    "category": "education",
+    "skills": [
+      {
+        "plugin": "everything-claude-code",
+        "skills": [
+          "search-first",
+          "continuous-learning-v2",
+          "article-writing",
+          "content-engine",
+          "market-research"
+        ]
+      },
+      {
+        "plugin": "anthropic-agent-skills",
+        "skills": ["doc-coauthoring", "algorithmic-art"]
+      }
+    ]
+  },
+  {
+    "name": "content-creators",
+    "description": "Skills for content creation - writing, design, presentations, and social media",
+    "category": "creative",
+    "skills": [
+      {
+        "plugin": "everything-claude-code",
+        "skills": [
+          "article-writing",
+          "content-engine",
+          "frontend-slides",
+          "investor-materials"
+        ]
+      },
+      {
+        "plugin": "anthropic-agent-skills",
+        "skills": [
+          "doc-coauthoring",
+          "algorithmic-art",
+          "canvas-design",
+          "theme-factory",
+          "slack-gif-creator"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "entrepreneurs",
+    "description": "Skills for startup founders - fundraising, pitching, market research, and investor relations",
+    "category": "business",
+    "skills": [
+      {
+        "plugin": "everything-claude-code",
+        "skills": [
+          "market-research",
+          "investor-materials",
+          "investor-outreach",
+          "frontend-slides"
+        ]
+      },
+      {
+        "plugin": "anthropic-agent-skills",
+        "skills": ["brand-guidelines", "internal-comms"]
+      }
+    ]
+  },
+  {
+    "name": "security",
+    "description": "Security-focused skills - code review, vulnerability scanning, and secure practices",
+    "category": "security",
+    "skills": [
+      {
+        "plugin": "everything-claude-code",
+        "skills": [
+          "security-review",
+          "security-scan",
+          "verification-loop"
+        ]
+      }
+    ]
+  }
+]
