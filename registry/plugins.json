@@ -1,5 +1,48 @@
 [
   {
+    "name": "everything-claude-code",
+    "repo": "https://github.com/affaan-m/everything-claude-code",
+    "description": "The comprehensive Claude Code performance system - agents, skills, hooks, commands, and rules from an Anthropic hackathon winner",
+    "stars": 5,
+    "category": "all-in-one",
+    "author": "affaan-m",
+    "tags": ["agents", "skills", "hooks", "commands", "rules", "tdd", "security", "automation", "best-practices", "cross-platform"],
+    "features": [
+      "16 specialized agents (planner, architect, code-reviewer, security-reviewer, tdd-guide, etc.)",
+      "65 battle-tested skills covering full SDLC + domain knowledge",
+      "40 slash commands for quick workflows",
+      "29 language-specific rules (TypeScript, Python, Go, Java, Swift, C++)",
+      "20+ hooks for automation (memory persistence, strategic compaction, verification loops)",
+      "Cross-platform support (Claude Code, Cursor IDE, OpenCode, Codex)",
+      "AgentShield security auditor (1282 tests, 102 static analysis rules)",
+      "Continuous learning v2 - auto-extract patterns from sessions",
+      "Token optimization guides + strategic compaction workflows",
+      "997 internal tests + comprehensive validation suite",
+      "Published to npm as ecc-universal and ecc-agentshield",
+      "MCP server configurations (14 pre-configured servers)"
+    ],
+    "requirements": {
+      "claudeCode": ">=2.1.0",
+      "node": ">=18.0.0"
+    },
+    "notes": [
+      "🏆 Anthropic x Forum Ventures Hackathon Winner (Sep 2025)",
+      "⭐ 65,000+ GitHub stars - the de-facto standard for Claude Code configs",
+      "📦 Rules must be installed manually (Claude Code plugin limitation)",
+      "🔧 Use install.sh for safe language-specific rule installation",
+      "⚠️ Repository is 7 weeks old despite claims of '10+ months' - likely configs existed pre-publication",
+      "⚠️ Approved due to EXCEPTIONAL community validation (65k stars, 8k forks, 488 commits)",
+      "⚠️ This is THE EXCEPTION to the 6-month age rule - use with confidence",
+      "💡 Start with common rules + one language to avoid overwhelming",
+      "💡 Use ECC_HOOK_PROFILE and ECC_DISABLED_HOOKS for runtime tuning",
+      "🔐 Includes comprehensive security scanning via AgentShield",
+      "🧪 Production-ready with extensive test coverage",
+      "MIT license (permissive)",
+      "Best for: Anyone using Claude Code seriously - this is the standard toolkit",
+      "Ecosystem: GitHub App for skill creation, AgentShield for security, Plankton for code quality"
+    ]
+  },
+  {
     "name": "claude-mem",
     "repo": "https://github.com/thedotmack/claude-mem",
     "description": "Persistent memory plugin that captures session context and injects relevant knowledge into future coding sessions",
