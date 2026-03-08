@@ -1,0 +1,45 @@
+# Source files (only publish compiled dist/)
+src/
+tsconfig.json
+*.ts
+
+# Development files
+node_modules/
+.git/
+.gitignore
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Test files
+test/
+tests/
+*.test.js
+*.spec.js
+
+# Build artifacts
+*.tsbuildinfo
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation for development only
+CONTRIBUTING.md
+
+# Keep these in the package:
+# - dist/
+# - skills/
+# - templates/
+# - README.md
+# - LICENSE
+# - QUICKSTART.md
+# - package.json
