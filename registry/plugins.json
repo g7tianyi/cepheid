@@ -1,0 +1,21 @@
+[
+  {
+    "name": "homunculus",
+    "repo": "https://github.com/humanplane/homunculus",
+    "description": "Learning plugin that watches your coding patterns and evolves autonomously",
+    "stars": 5,
+    "category": "learning",
+    "author": "humanplane",
+    "tags": ["learning", "observability", "evolution", "patterns"],
+    "features": [
+      "Observes your development patterns through hooks",
+      "Generates learned behaviors (instincts)",
+      "Evolves into specialized commands, skills, and agents",
+      "Background pattern analysis with Claude Haiku",
+      "Export/import instincts for sharing"
+    ],
+    "requirements": {
+      "claudeCode": ">=2.0.0"
+    }
+  }
+]

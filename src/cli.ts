@@ -138,7 +138,9 @@ plugin
 
 plugin
   .command('list')
-  .description('List installed plugins')
+  .description('List available plugins from registry')
+  .option('-c, --category <category>', 'Filter by category')
+  .option('-i, --installed', 'Show only installed plugins')
   .action(pluginCommands.listPlugins);
 
 plugin

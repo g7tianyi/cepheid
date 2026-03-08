@@ -9,6 +9,12 @@ import {
   linkPlugin,
   unlinkPlugin,
 } from '../plugins/installer';
+import {
+  loadPluginsRegistry,
+  searchPluginsRegistry,
+  getPluginsByCategory,
+  renderStars,
+} from '../plugins/registry';
 
 export async function installPlugins(repos: string[]) {
   try {
@@ -50,23 +56,60 @@ export async function uninstallPlugins(plugins: string[]) {
   }
 }
 
-export async function listPlugins() {
+export async function listPlugins(options?: { category?: string; installed?: boolean }) {
   try {
-    const plugins = await listInstalledPlugins();
+    let availablePlugins = await loadPluginsRegistry();
 
-    if (plugins.length === 0) {
-      console.log(chalk.yellow('No plugins installed.'));
-      console.log(chalk.gray('Install plugins with: cepheid plugin install <github-url>'));
+    if (options?.category) {
+      availablePlugins = await getPluginsByCategory(options.category);
+    }
+
+    if (options?.installed) {
+      // Show only installed plugins
+      const installedList = await listInstalledPlugins();
+      const installedNames = installedList.map(p => p.name);
+      availablePlugins = availablePlugins.filter(p => installedNames.includes(p.name));
+
+      if (availablePlugins.length === 0) {
+        console.log(chalk.yellow('No plugins installed.'));
+        console.log(chalk.gray('Install plugins with: cepheid plugin install <name>'));
+        return;
+      }
+    }
+
+    if (availablePlugins.length === 0) {
+      console.log(chalk.yellow('No plugins found in registry.'));
       return;
     }
 
-    console.log(chalk.bold('\nInstalled Plugins:\n'));
-    for (const plugin of plugins) {
-      console.log(`  ${chalk.green('✓')} ${chalk.bold(plugin.name)}`);
-      console.log(`    ${chalk.gray('Repo:')} ${plugin.repo}`);
-      console.log(`    ${chalk.gray('Path:')} ${plugin.path}`);
-      console.log();
+    console.log(chalk.bold('\nAvailable Plugins:\n'));
+
+    // Group by category
+    const byCategory: Record<string, typeof availablePlugins> = {};
+    availablePlugins.forEach(plugin => {
+      if (!byCategory[plugin.category]) {
+        byCategory[plugin.category] = [];
+      }
+      byCategory[plugin.category].push(plugin);
+    });
+
+    for (const [category, plugins] of Object.entries(byCategory)) {
+      console.log(chalk.cyan.bold(`${category}:`));
+
+      for (const plugin of plugins) {
+        const installed = await isPluginInstalled(plugin.name);
+        const badge = installed ? chalk.green('✓') : chalk.gray('○');
+        const stars = chalk.yellow(renderStars(plugin.stars));
+
+        console.log(`  ${badge} ${chalk.bold(plugin.name)} ${stars}`);
+        console.log(`    ${plugin.description}`);
+        console.log(`    ${chalk.gray('by')} ${plugin.author} ${chalk.gray('•')} ${chalk.gray(plugin.repo)}`);
+        console.log();
+      }
     }
+
+    console.log(chalk.gray('Install with: cepheid plugin install <name>'));
+    console.log();
   } catch (error: any) {
     console.error(chalk.red('Error listing plugins:'), error.message);
     process.exit(1);

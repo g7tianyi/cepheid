@@ -4,6 +4,7 @@ import { exec } from 'child_process';
 import { promisify } from 'util';
 import { getPluginsDir, getClaudeCodePluginsDir } from '../config/paths';
 import { readCepheidConfig, writeCepheidConfig } from '../config/manager';
+import { getPluginFromRegistry } from './registry';
 
 const execAsync = promisify(exec);
 
@@ -40,16 +41,33 @@ export function parseGitHubRepo(url: string): { owner: string; repo: string } | 
 }
 
 /**
- * Install a plugin from GitHub repository
+ * Install a plugin from GitHub repository or registry name
  */
-export async function installPlugin(repoUrl: string, targetDir?: string): Promise<void> {
+export async function installPlugin(nameOrUrl: string, targetDir?: string): Promise<void> {
+  let repoUrl = nameOrUrl;
+  let pluginName = targetDir;
+
+  // Check if it's a name from registry (not a URL)
+  if (!nameOrUrl.includes('github.com') && !nameOrUrl.startsWith('http')) {
+    // Try to find in registry
+    const pluginMetadata = await getPluginFromRegistry(nameOrUrl);
+    if (pluginMetadata) {
+      repoUrl = pluginMetadata.repo;
+      pluginName = pluginMetadata.name;
+    } else {
+      throw new Error(`Plugin "${nameOrUrl}" not found in registry. Use a GitHub URL to install custom plugins.`);
+    }
+  }
+
   const parsed = parseGitHubRepo(repoUrl);
   if (!parsed) {
     throw new Error(`Invalid GitHub repository URL: ${repoUrl}`);
   }
 
   const { owner, repo } = parsed;
-  const pluginName = targetDir || repo;
+  if (!pluginName) {
+    pluginName = targetDir || repo;
+  }
 
   // Use Cepheid's plugins directory
   const pluginsDir = getPluginsDir();
