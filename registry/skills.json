@@ -47,5 +47,162 @@
       "Best for: Daily tech news consumers comfortable with Bun and API costs",
       "NOT for: Production use, license-sensitive environments, budget users"
     ]
+  },
+  {
+    "name": "confidence-check",
+    "url": "https://raw.githubusercontent.com/g7tianyi/cepheid/master/skills/productivity/confidence-check.md",
+    "type": "github",
+    "stars": 5,
+    "category": "productivity",
+    "author": "Cepheid (extracted from SuperClaude)",
+    "tags": ["productivity", "planning", "token-efficiency", "decision-making", "confidence", "workflow"],
+    "metadata": {
+      "name": "confidence-check",
+      "version": "1.0.0",
+      "description": "Assess task confidence before starting to save 5k-50k tokens by preventing wrong directions",
+      "category": "productivity",
+      "author": "Cepheid",
+      "keywords": ["confidence assessment", "planning", "token efficiency", "decision making", "task evaluation"]
+    },
+    "features": [
+      "Three-tier confidence system (≥90% proceed, 70-89% investigate, <70% ask questions)",
+      "Token efficiency: 100-200 token investment saves 5,000-50,000 tokens",
+      "Systematic evaluation of task clarity and feasibility",
+      "Documentation of assumptions before implementation",
+      "Red flag detection for low-confidence indicators",
+      "Integration with investigation and clarification workflows",
+      "Evidence-based confidence assessment framework"
+    ],
+    "requirements": {
+      "claudeCode": ">=2.0.0"
+    },
+    "notes": [
+      "🏆 Extracted from SuperClaude Framework's Confidence-First Implementation pattern",
+      "💡 ROI: 25x to 250x in token savings by catching wrong directions early",
+      "⚡ Prevents wasted work on misunderstood requirements",
+      "📋 Works best with evidence-based-dev for investigation phase",
+      "🎯 Complements TDD workflow and code review processes",
+      "✅ Simple to adopt: Just ask yourself confidence level before starting",
+      "Best for: Complex tasks, unfamiliar tech, unclear requirements",
+      "NOT for: Trivial changes, well-understood routine tasks"
+    ]
+  },
+  {
+    "name": "self-check-protocol",
+    "url": "https://raw.githubusercontent.com/g7tianyi/cepheid/master/skills/quality/self-check-protocol.md",
+    "type": "github",
+    "stars": 5,
+    "category": "quality",
+    "author": "Cepheid (extracted from SuperClaude)",
+    "tags": ["quality-assurance", "testing", "validation", "verification", "best-practices", "workflow"],
+    "metadata": {
+      "name": "self-check-protocol",
+      "version": "1.0.0",
+      "description": "Systematic validation framework with 4 questions and 7 red flags to ensure genuine task completion",
+      "category": "quality",
+      "author": "Cepheid",
+      "keywords": ["quality assurance", "self check", "validation", "verification", "testing", "red flags"]
+    },
+    "features": [
+      "Four fundamental validation questions (tests passing, requirements met, assumptions verified, evidence provided)",
+      "Seven red flags detecting common implementation errors",
+      "Prevents false completion claims (tests passing without output, partial implementations)",
+      "Assumption verification framework",
+      "Evidence-based validation for all claims",
+      "Integration with TDD and code review workflows",
+      "Quick reference card for easy adoption"
+    ],
+    "requirements": {
+      "claudeCode": ">=2.0.0"
+    },
+    "notes": [
+      "🏆 Extracted from SuperClaude Framework's SelfCheckProtocol",
+      "🔍 Catches errors that passing tests might miss",
+      "⚠️ Critical for preventing 'works but wrong' implementations",
+      "🧪 Essential companion to TDD workflow",
+      "📚 Complements confidence-check and evidence-based-dev",
+      "✅ Systematic approach prevents rushing to completion",
+      "Best for: All implementations before marking complete",
+      "Use after: Tests pass but before claiming done"
+    ]
+  },
+  {
+    "name": "wave-execution",
+    "url": "https://raw.githubusercontent.com/g7tianyi/cepheid/master/skills/performance/wave-execution.md",
+    "type": "github",
+    "stars": 5,
+    "category": "performance",
+    "author": "Cepheid (extracted from SuperClaude)",
+    "tags": ["performance", "parallelization", "optimization", "workflow", "efficiency", "speed"],
+    "metadata": {
+      "name": "wave-execution",
+      "version": "1.0.0",
+      "description": "Parallel execution pattern achieving 3.5x speedup through Wave→Checkpoint→Wave workflow",
+      "category": "performance",
+      "author": "Cepheid",
+      "keywords": ["parallel execution", "performance", "wave pattern", "checkpoint", "optimization", "concurrency"]
+    },
+    "features": [
+      "Wave→Checkpoint→Wave parallel execution pattern",
+      "3.5x faster than sequential execution",
+      "Identify and execute independent operations concurrently",
+      "Collective analysis at checkpoints for pattern recognition",
+      "Multiple tool calls in single message for true parallelism",
+      "Examples for file operations, searches, and tests",
+      "Decision matrix for when to use wave execution"
+    ],
+    "requirements": {
+      "claudeCode": ">=2.0.0"
+    },
+    "notes": [
+      "🏆 Extracted from SuperClaude Framework's Wave-Checkpoint-Wave pattern",
+      "⚡ Performance gain: 3.5x to 6x faster than sequential",
+      "🎯 Perfect for multi-file operations, searches, and batch processing",
+      "💡 Key insight: Checkpoint analyzes ALL results collectively, not individually",
+      "⚠️ Only use when operations are truly independent",
+      "📊 Includes performance calculation formulas",
+      "Best for: Multi-file refactoring, parallel tests, batch operations",
+      "NOT for: Operations with dependencies, atomic transactions"
+    ]
+  },
+  {
+    "name": "evidence-based-dev",
+    "url": "https://raw.githubusercontent.com/g7tianyi/cepheid/master/skills/quality/evidence-based-dev.md",
+    "type": "github",
+    "stars": 5,
+    "category": "quality",
+    "author": "Cepheid (extracted from SuperClaude)",
+    "tags": ["best-practices", "verification", "documentation", "research", "quality", "reliability"],
+    "metadata": {
+      "name": "evidence-based-dev",
+      "version": "1.0.0",
+      "description": "Never assume, always verify - back every decision with evidence from official sources or tests",
+      "category": "quality",
+      "author": "Cepheid",
+      "keywords": ["evidence based", "verification", "research", "documentation", "assumptions", "proof"]
+    },
+    "features": [
+      "Never Assume → Always Verify principle",
+      "Five-tier evidence source reliability ranking",
+      "Systematic assumption identification and verification",
+      "Evidence documentation templates",
+      "Red flag detection for assumption-based language",
+      "Verification techniques (documentation, code archaeology, experiments, TDD)",
+      "Evidence trail for decisions and claims"
+    ],
+    "requirements": {
+      "claudeCode": ">=2.0.0"
+    },
+    "notes": [
+      "🏆 Extracted from SuperClaude Framework's Evidence-Based Development principle",
+      "📚 Tier 1 evidence: Official docs, API specs, source code",
+      "🔍 Tier 2 evidence: Existing patterns, tests, configuration",
+      "🧪 Tier 3 evidence: Experiments, benchmarks",
+      "⚠️ Never trust assumptions or Stack Overflow without verification",
+      "📊 Includes evidence source reliability rankings",
+      "🎯 Essential for confidence-check investigation phase",
+      "Best for: Unfamiliar APIs, architectural decisions, performance claims",
+      "Critical for: Production code, security features, public APIs"
+    ]
   }
 ]

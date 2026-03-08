@@ -141,5 +141,56 @@
       "Best for: Teams wanting discipline, junior developers learning best practices",
       "NOT for: Experienced developers with established workflows, quick prototypes"
     ]
+  },
+  {
+    "name": "superclaude",
+    "repo": "https://github.com/SuperClaude-Org/SuperClaude_Framework",
+    "description": "Meta-programming framework transforming Claude Code into a structured development platform with 30 commands, 16 agents, and 7 behavioral modes",
+    "stars": 5,
+    "category": "all-in-one",
+    "author": "SuperClaude-Org",
+    "tags": ["framework", "commands", "agents", "mcp", "workflows", "automation", "python", "meta-programming", "research", "token-efficiency"],
+    "features": [
+      "30 slash commands covering complete development lifecycle (planning, dev, testing, docs, git, PM, research)",
+      "16 specialized AI agents with domain expertise (PM, Security Engineer, Frontend Architect, etc.)",
+      "7 behavioral modes (Brainstorming, Deep Research, Orchestration, Token-Efficiency, Task Management, Introspection, Business Panel)",
+      "8 MCP server integrations (Tavily, Context7, Sequential-Thinking, Playwright, Serena, etc.)",
+      "Confidence-First Implementation: 90% confidence threshold before starting work",
+      "Wave-Checkpoint-Wave execution pattern (3.5x faster than sequential)",
+      "SelfCheckProtocol with 7 red flag detections for quality assurance",
+      "Evidence-based development workflows (never assume, always verify)",
+      "Deep research capabilities with multi-hop reasoning and quality scoring",
+      "Token-efficiency modes claiming 30-50% token reduction",
+      "Python package with pytest plugin integration",
+      "TypeScript plugin system (planned for v5.0)",
+      "Automated web research through Tavily integration",
+      "Comprehensive documentation (PLANNING.md, CLAUDE.md, KNOWLEDGE.md, AGENTS.md)"
+    ],
+    "requirements": {
+      "claudeCode": ">=2.0.0",
+      "python": ">=3.8",
+      "pipx": "required for installation"
+    },
+    "notes": [
+      "⭐ 21,200 GitHub stars - EXTREMELY POPULAR framework",
+      "🔥 1,800 forks - highly active community",
+      "🏆 Mature project (v4.2.0) with 341 commits",
+      "📦 Install via: pipx install superclaude && superclaude install",
+      "🐍 Python-based (not Node.js) - different from most Claude Code plugins",
+      "🔧 Optional MCP servers provide 2-3x performance boost with 30-50% fewer tokens",
+      "💡 Confidence-first pattern: 100-200 token investment saves 5k-50k tokens on wrong direction",
+      "⚡ Wave-Checkpoint-Wave execution: 3.5x faster than sequential workflows",
+      "🔐 SelfCheckProtocol prevents common implementation errors with systematic validation",
+      "📚 Excellent documentation structure (PLANNING.md for architecture, CLAUDE.md for guidelines)",
+      "🧪 Pytest integration for test automation",
+      "⚠️ Requires pipx and Python environment (different setup from npm-based plugins)",
+      "⚠️ Some overlap with everything-claude-code but complementary approach",
+      "⚠️ 30 commands may be overwhelming - start with core workflows",
+      "MIT license (permissive)",
+      "Best for: Python developers, researchers, teams wanting structured workflows with MCP integration",
+      "Unique strengths: Python ecosystem, MCP server orchestration, research capabilities, behavioral modes",
+      "Complements: everything-claude-code (TypeScript/Node.js), anthropic-agent-skills (skills)",
+      "Install commands to ~/.claude/commands/ as optional slash commands"
+    ]
   }
 ]
