@@ -35,17 +35,11 @@ export interface CepheidConfig {
  */
 export async function readClaudeCodeConfig(): Promise<ClaudeCodeConfig | null> {
   const configDir = getClaudeCodeConfigDir();
-  const configPath = path.join(configDir, 'config.json');
+  const configPath = path.join(configDir, 'settings.json');
 
   try {
     if (await fs.pathExists(configPath)) {
       return await fs.readJson(configPath);
-    }
-    // Try YAML format
-    const yamlPath = path.join(configDir, 'config.yaml');
-    if (await fs.pathExists(yamlPath)) {
-      const content = await fs.readFile(yamlPath, 'utf8');
-      return yaml.load(content) as ClaudeCodeConfig;
     }
   } catch (error) {
     console.error('Error reading Claude Code config:', error);
@@ -61,7 +55,7 @@ export async function writeClaudeCodeConfig(config: ClaudeCodeConfig): Promise<v
   const configDir = getClaudeCodeConfigDir();
   await fs.ensureDir(configDir);
 
-  const configPath = path.join(configDir, 'config.json');
+  const configPath = path.join(configDir, 'settings.json');
   await fs.writeJson(configPath, config, { spaces: 2 });
 }
 

@@ -29,14 +29,11 @@ export function getClaudeCodeConfigDir(): string {
   switch (platform) {
     case 'darwin':
     case 'linux':
-      // Try common locations
-      const xdgConfig = path.join(homeDir, '.config', 'claude-code');
-      const dotConfig = path.join(homeDir, '.claude-code');
-      return xdgConfig; // Default to XDG spec
+      return path.join(homeDir, '.claude');
     case 'win32':
-      return path.join(process.env.APPDATA || path.join(homeDir, 'AppData', 'Roaming'), 'claude-code');
+      return path.join(homeDir, '.claude');
     default:
-      return path.join(homeDir, '.claude-code');
+      return path.join(homeDir, '.claude');
   }
 }
 
